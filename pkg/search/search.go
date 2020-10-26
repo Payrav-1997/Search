@@ -39,6 +39,8 @@ func All(ctx context.Context, phrase string, files []string) <-chan []Result {
 			con := string(content)
 			str := strings.Split(con, "\n")
 			res := Result{Phrase: phrase}
+			result := make([]Result, 0)
+
 			
 			for lineNum, line := range str {
 				if line == "" {
@@ -53,12 +55,13 @@ func All(ctx context.Context, phrase string, files []string) <-chan []Result {
 				res.LineNum = int64(lineNum + 1)
 				for _, index := range indexes {
 					res.ColNum = int64(index[0] + 1)
-					
+					result = append(result, res)				
 				}
 			
 			}
-
-			
+			if len(result) > 0 {
+				found <- result
+			}		
 		
 		}(ch, file)
 	}
