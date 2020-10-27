@@ -73,3 +73,9 @@ func All(ctx context.Context, phrase string, files []string) <-chan []Result {
 
 	return ch
 }
+
+//Any....
+func Any(ctx context.Context, phrase string, files []string) <-chan Result {
+	ch := make (chan Result)
+	return ch
+}
