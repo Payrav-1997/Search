@@ -28,7 +28,7 @@ func TestAny(t *testing.T) {
 	
 		results := Any(root, "Tests", files)
 	
-		for res := range results {
-			t.Error(res, '\n')
+		if (len(results))>1{
+			t.Error("Error")
 		}
 }
